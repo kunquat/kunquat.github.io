@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Kunquat Tracker</title>
+</head>
+<body>
+<h1>Kunquat &ndash; old school new school tracker</h1>
+<img src="kunquat.svg" alt="" style="position: fixed; bottom: 0em; right: 1em; width: 10em; opacity: 0.4;" />
+<img src="ss.jpg" alt="" />
+
+<h2>1. Tuning</h2>
+<p>To use Kunquat, you need to get your hands on a relatively new Ubuntu system. You can then download and install kunquat with the following command line magic.</p>
+<pre>
+sudo apt-get install build-essential scons libarchive-dev libwavpack-dev libpulse-dev python-qt4 check libsndfile1-dev wget
+cd /tmp
+wget http://omg.com/<a href="kunquat-lol.tar.gz">kunquat-lol.tar.gz</a>
+tar xzf kunquat-lol.tar.gz
+cd kunquat-lol
+scons
+scons prefix=~/kunquat install
+</pre>
+
+<h2>2. Sound Check</h2>
+<p>At this point you should have Kunquat installed. The following commands should help you try out your fresh installation.</p>
+<pre>
+export LD_LIBRARY_PATH=~/kunquat/lib
+export PYTHONPATH=~/kunquat/lib/python2.6/site-packages
+~/kunquat/bin/kunquat-player ~/kunquat/share/doc/kunquat/examples/example.kqt.  bz2
+</pre>
+
+<h2>3. Go!</h2>
+<pre>
+export LD_LIBRARY_PATH=~/kunquat/lib
+export PYTHONPATH=~/kunquat/lib/python2.6/site-packages
+~/kunquat/bin/kunquat-editor
+</pre>
+<a href="piano.kqi.gz">piano.kqi.gz</a>.
+
+<hr />
+After <a href="https://launchpad.net/+login">creating</a> a Launchpad account you may <a href="https://bugs.launchpad.net/kunquat/+filebug">file bugs</a> or <a href="https://answers.launchpad.net/kunquat/+addquestion">ask questions</a>.
+</body>
+</html>
