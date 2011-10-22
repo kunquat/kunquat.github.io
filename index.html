@@ -2,6 +2,21 @@
 <html>
 <head>
 <title>Kunquat Tracker</title>
+<style type="text/css">
+body
+{
+	margin: 2em 5em;
+	font-family: sans-serif;
+}
+p.console
+{
+	width: 50%;
+	background-color: #ffc;
+	padding: 0.5em;
+	border: solid medium #ccc;
+	font-family: monospace;
+}
+</style>
 </head>
 <body>
 <h1>Kunquat &ndash; a fresh take on old school trackers</h1>
@@ -9,34 +24,35 @@
 <img src="ss.jpg" alt="" />
 
 <h2>1. Tuning</h2>
-<p>To use Kunquat, you need to get your hands on a relatively new Ubuntu system. You can then download and install kunquat with the following command line magic.</p>
-<pre>
+<p>To use Kunquat, you need to get your hands on a relatively new (we use 11.10) Ubuntu system. You can then download and install kunquat with the following command line magic.</p>
+<p class="console">
 sudo apt-get install build-essential scons libarchive-dev libwavpack-dev libpulse-dev python-qt4 check libsndfile1-dev wget
-cd /tmp
-wget http://omg.com/<a href="kunquat-lol.tar.gz">kunquat-lol.tar.gz</a>
-tar xzf kunquat-lol.tar.gz
-cd kunquat-lol
-scons
-scons prefix=~/kunquat install
-</pre>
+<br />cd /tmp
+<br />wget http://kunquat.org/<a href="kunquat-lol.tar.gz">kunquat-lol.tar.gz</a>
+<br />tar xzf kunquat-lol.tar.gz
+<br />cd kunquat-lol
+<br />scons
+<br />scons prefix=~/kunquat install
+</p>
 
 <h2>2. Sound Check</h2>
 <p>At this point you should have Kunquat installed. The following commands should help you try out your fresh installation.</p>
-<pre>
+<p class="console">
 export LD_LIBRARY_PATH=~/kunquat/lib
-export PYTHONPATH=~/kunquat/lib/python2.6/site-packages
-~/kunquat/bin/kunquat-player ~/kunquat/share/doc/kunquat/examples/example.kqt.  bz2
-</pre>
+<br />export PYTHONPATH=~/kunquat/lib/python2.7/site-packages
+<br />~/kunquat/bin/kunquat-player ~/kunquat/share/doc/kunquat/examples/example.kqt.  bz2
+</p>
 
 <h2>3. Go!</h2>
-<pre>
+<p>You can start the Kunquat tracker as follows.</p>
+<p class="console">
 export LD_LIBRARY_PATH=~/kunquat/lib
-export PYTHONPATH=~/kunquat/lib/python2.6/site-packages
-~/kunquat/bin/kunquat-editor
-</pre>
-<a href="piano.kqi.gz">piano.kqi.gz</a>.
+<br />export PYTHONPATH=~/kunquat/lib/python2.7/site-packages
+<br />~/kunquat/bin/kunquat-editor
+</p>
+<a href="piano.kqti.gz">piano.kqti.gz</a>.
 
-<hr />
+<h2>4. Get in Touch</h2>
 After <a href="https://launchpad.net/+login">creating</a> a Launchpad account you may <a href="https://bugs.launchpad.net/kunquat/+filebug">file bugs</a> or <a href="https://answers.launchpad.net/kunquat/+addquestion">ask questions</a>.
 </body>
 </html>
