@@ -5,12 +5,17 @@
 <style type="text/css">
 body
 {
-	margin: 2em 5em;
+	margin: 2em 15%;
 	font-family: sans-serif;
+}
+p
+{
+	max-width: 20em;
+	text-align: justify;
 }
 p.console
 {
-	width: 50%;
+	max-width: 100%;
 	background-color: #ffc;
 	padding: 0.5em;
 	border: solid medium #ccc;
@@ -20,8 +25,9 @@ p.console
 </head>
 <body>
 <h1>Kunquat &ndash; a fresh take on old school trackers</h1>
-<img src="kunquat.svg" alt="" style="position: fixed; bottom: 0em; right: 1em; width: 10em; opacity: 0.4;" />
-<img src="ss.png" alt="" />
+<a style="float: right;" href="ss.png"><img style="width: 500px;" src="ss.png" alt="" /></a>
+<p>Kunquat is a music sequencer similar to tracker programs. Some of its distinctive features include high time resolution and flexible tuning configuration. Great care is also taken in designing a mixing infrastructure to allow mixing logical bodies instead of hardware forced channels.</p>
+<p>The design is partially motivated by the desire to compose interactive music, that reacts on changes in the environment where the music is played. Such factors might include the events in a video game, or the amount of customers in a restaurant where the music is played.</p>
 
 <h2>1. Tuning</h2>
 <p>To use Kunquat, you need to get your hands on a relatively new (we use 11.10) Ubuntu system. You can then download and install kunquat with the following command line magic.</p>
@@ -50,9 +56,12 @@ export LD_LIBRARY_PATH=~/kunquat/lib
 <br />export PYTHONPATH=~/kunquat/lib/python2.7/site-packages
 <br />~/kunquat/bin/kunquat-tracker
 </p>
+<!--
 <a href="piano.kqti.gz">piano.kqti.gz</a>.
-
+-->
 <h2>4. Get in Touch</h2>
 After <a href="https://launchpad.net/+login">creating</a> a Launchpad account you may <a href="https://bugs.launchpad.net/kunquat/+filebug">file bugs</a> or <a href="https://answers.launchpad.net/kunquat/+addquestion">ask questions</a>.
+
+<img src="kunquat.svg" alt="" style="position: fixed; bottom: 0em; right: 1em; width: 10em; opacity: 0.4;" />
 </body>
 </html>
