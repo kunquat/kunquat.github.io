@@ -1,4 +1,0 @@
-RewriteEngine On
-RewriteCond %{HTTP_HOST} ^www.kunquat.com$ [NC]
-RewriteRule ^(.*)$ http://kunquat.com/$1 [R=301,L]
-
