@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod -R a+rX ../kunquat.org
+chmod -R a+rX .
