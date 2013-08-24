@@ -1,0 +1,21 @@
+body
+{
+	margin: 2em 15%;
+	font-family: sans-serif;
+}
+p
+{
+	max-width: 30em;
+	text-align: justify;
+}
+p.console
+{
+	max-width: 100%;
+	background-color: #ffc;
+	padding: 0.5em;
+	border: solid medium #ccc;
+	font-family: monospace;
+}
+td *
+{
+}
