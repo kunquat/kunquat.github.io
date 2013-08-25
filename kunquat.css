@@ -1,5 +1,10 @@
 body
 {
+	background-image: url('kunquat.svg');
+	background-repeat: no-repeat;
+	background-size: 10em auto;
+	background-position: right 1em bottom 0;
+	background-attachment: fixed;
 	margin: 2em 15%;
 	font-family: sans-serif;
 }
