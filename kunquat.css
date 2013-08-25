@@ -28,3 +28,12 @@ iframe.menu
 {
 	width: 100%;
 }
+.warning
+{
+	color: #f00;
+}
+.doc
+{
+	width: 100%;
+	height: 100em;
+}
