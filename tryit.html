@@ -10,34 +10,22 @@
 <h2>1. Tuning</h2>
 <p>To use Kunquat, you need to get your hands on a relatively new (we use 12.04) Ubuntu system. You can then download and install kunquat with the following command line magic.</p>
 <p class="console">
-sudo apt-get install build-essential scons libarchive-dev libwavpack-dev libpulse-dev python-qt4 check libsndfile1-dev wget
+sudo -k apt-get install build-essential scons libwavpack-dev libpulse-dev python-qt4 check libsndfile1-dev wget
 <br />cd /tmp
-<br />wget http://kunquat.com/releases/<a href="http://kunquat.com/releases/kunquat-0.5.3b.tar.gz">kunquat-0.5.3b.tar.gz</a>
-<br />tar xzf kunquat-0.5.3b.tar.gz
-<br />cd kunquat-0.5.3b
+<br />wget http://kunquat.com/releases/<a href="http://kunquat.com/releases/kunquat-0.6.1.tar.gz">kunquat-0.6.1.tar.gz</a>
+<br />tar xzf kunquat-0.6.1.tar.gz
+<br />cd kunquat-0.6.1
 <br />scons
 <br />scons prefix=~/kunquat install
 </p>
 
 <h2>2. Sound Check</h2>
-<p>At this point you should have Kunquat installed. The following commands should help you try out your fresh installation.</p>
+<p>At this point you should have Kunquat installed. You can start the Kunquat tracker as follows.</p>
 <p class="console">
 export LD_LIBRARY_PATH=~/kunquat/lib
 <br />export PYTHONPATH=~/kunquat/lib/python2.7/site-packages
-<br />~/kunquat/bin/kunquat-player ~/kunquat/share/doc/kunquat/examples/example.kqt.bz2
+<br />~/kunquat/bin/kunquat-tracker
 </p>
-
-<h2>3. Go!</h2>
-<p>You can start the Kunquat tracker as follows.</p>
-<p class="console">
-export LD_LIBRARY_PATH=~/kunquat/lib
-<br />export PYTHONPATH=~/kunquat/lib/python2.7/site-packages
-<br />~/kunquat/bin/kunquat-tracker ~/kunquat/share/doc/kunquat/examples/example.kqt.bz2
-</p>
-<p><a href="http://kunquat.com/releases/kdemo.tar.bz2">A quick demo</a> that illustrates communication between music and graphics (requires SDL 1.2 and libGL).</p>
-<!--
-<a href="piano.kqti.gz">piano.kqti.gz</a>.
--->
 
 </body>
 </html>
