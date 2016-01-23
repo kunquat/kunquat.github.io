@@ -49,3 +49,15 @@ div.screen_shot img
 	width: 100%;
 	height: 800em;
 }
+
+.screen_shot_thumbnail {
+	height: 256px;
+	display: inline-block;
+}
+.screen_shot_area {
+	text-align: center;
+}
+
+h2 {
+	margin-top: 2em;
+}
