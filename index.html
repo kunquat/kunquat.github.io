@@ -21,6 +21,24 @@
 
 <h2>Releases</h2>
 
+<h3>Kunquat 0.7.1</h3>
+<p>2016-01-23</p>
+<p>
+This release of Kunquat features major enhancements in composition editor, instrument and signal processing editors and the audio synthesis pipeline. Other enhancements include basic interactivity support and miscellaneous bug fixes. Despite all the work, Kunquat is still in an early stage of development. However, we encourage you to try the tracker out and let us know how you feel about it!
+</p>
+
+<p>
+It is now possible to write compositions consisting of several patterns. All patterns of a composition are displayed together in the sheet, helping the user see the full structure of the composition. We have also reintroduced an improved grid that helps aligning event triggers in the time axis. The user can create customised grid layouts to support tuplets. Custom grids also support shuffled meter.
+</p>
+
+<p>
+The audio synthesis editor has been extended to cover most aspects of instrument and signal graph editing. We have combined the concepts of generator and DSP into a new kind of signal processor. These processors can manipulate signals either separately or mixed together. This approach allows for more flexibility in the way audio is synthesised while keeping individual processors simple. Additionally, note pitch and force information is now explicitly produced inside the instrument signal processing system. Finally, the lowpass and stereo panning events have been replaced with more generic events that control user-defined potentiometers of instruments and effects.
+</p>
+
+<p>
+To forward the support of composing game music, we have reintroduced editor for composition interactivity. The composer is now able to define environment variables that can be used to alter the way music is played. This provides a convenient interface for programmers who wish to control music playback without having to worry about the internal structure of the music.
+</p>
+
 <h3>Kunquat 0.6.2</h3>
 <p>2014-12-04</p>
 <p>
