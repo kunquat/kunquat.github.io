@@ -1,15 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <title>Kunquat Tracker</title>
 <link rel="stylesheet" type="text/css" href="kunquat.css" />
 <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
 </head>
+
 <body>
+
 <iframe seamless class="menu" src="menu.html"></iframe>
 <div class="screenshot"><a href="/screenshots"><img src="/img/screenshots/kunquat-0.7.1.png" alt="" /></a></div>
-<p>Kunquat is a music sequencer similar to tracker programs. Some of its distinctive features include high time resolution and flexible tuning configuration. Great care is also taken in designing a mixing infrastructure to allow mixing logical bodies instead of hardware forced channels.</p>
-<p>The design is partially motivated by the desire to compose interactive music, that reacts on changes in the environment where the music is played. Such factors might include the events in a video game, or the amount of customers in a restaurant where the music is played.</p>
+
+<p>Kunquat is a music sequencer similar to tracker programs. Some of its distinctive
+features include high time resolution and flexible tuning configuration. Great care is
+also taken in designing a mixing infrastructure to allow mixing logical bodies instead of
+hardware forced channels.</p>
+<p>The design is partially motivated by the desire to compose interactive music, that
+reacts on changes in the environment where the music is played. Such factors might
+include the events in a video game, or the amount of customers in a restaurant where the
+music is played.</p>
 
 <table><tr>
 <td><iframe src="//www.facebook.com/plugins/like.php?href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FKunquat%2F188595560505&amp;send=false&amp;layout=button_count&amp;width=100&amp;show_faces=false&amp;action=like&amp;colorscheme=light&amp;font&amp;height=21&amp;appId=12643779236" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:21px;" allowTransparency="true"></iframe></td>
@@ -17,58 +27,103 @@
 <td><g:plusone size="medium"></g:plusone></td>
 </tr></table>
 
-<p>We are still at an early stage. Check us out on <a href="https://github.com/kunquat/kunquat">GitHub</a>.</p>
+<p>We are still at an early stage. Check us out on
+<a href="https://github.com/kunquat/kunquat">GitHub</a>.</p>
 
 <h2>Releases</h2>
 
 <h3>Kunquat 0.7.1</h3>
 <p>2016-01-23</p>
 <p>
-This release of Kunquat features major enhancements in composition editor, instrument and signal processing editors and the audio synthesis pipeline. Other enhancements include basic interactivity support and miscellaneous bug fixes. Despite all the work, Kunquat is still in an early stage of development. However, we encourage you to try the tracker out and let us know how you feel about it!
+This release of Kunquat features major enhancements in composition editor, instrument and
+signal processing editors and the audio synthesis pipeline. Other enhancements include
+basic interactivity support and miscellaneous bug fixes. Despite all the work, Kunquat is
+still in an early stage of development. However, we encourage you to try the tracker out
+and let us know how you feel about it!
 </p>
 
 <p>
-It is now possible to write compositions consisting of several patterns. All patterns of a composition are displayed together in the sheet, helping the user see the full structure of the composition. We have also reintroduced an improved grid that helps aligning event triggers in the time axis. The user can create customised grid layouts to support tuplets. Custom grids also support shuffled meter.
+It is now possible to write compositions consisting of several patterns. All patterns of
+a composition are displayed together in the sheet, helping the user see the full
+structure of the composition. We have also reintroduced an improved grid that helps
+aligning event triggers in the time axis. The user can create customised grid layouts to
+support tuplets. Custom grids also support shuffled meter.
 </p>
 
 <p>
-The audio synthesis editor has been extended to cover most aspects of instrument and signal graph editing. We have combined the concepts of generator and DSP into a new kind of signal processor. These processors can manipulate signals either separately or mixed together. This approach allows for more flexibility in the way audio is synthesised while keeping individual processors simple. Additionally, note pitch and force information is now explicitly produced inside the instrument signal processing system. Finally, the lowpass and stereo panning events have been replaced with more generic events that control user-defined potentiometers of instruments and effects.
+The audio synthesis editor has been extended to cover most aspects of instrument and
+signal graph editing. We have combined the concepts of generator and DSP into a new kind
+of signal processor. These processors can manipulate signals either separately or mixed
+together. This approach allows for more flexibility in the way audio is synthesised while
+keeping individual processors simple. Additionally, note pitch and force information is
+now explicitly produced inside the instrument signal processing system. Finally, the
+lowpass and stereo panning events have been replaced with more generic events that
+control user-defined potentiometers of instruments and effects.
 </p>
 
 <p>
-To forward the support of composing game music, we have reintroduced editor for composition interactivity. The composer is now able to define environment variables that can be used to alter the way music is played. This provides a convenient interface for programmers who wish to control music playback without having to worry about the internal structure of the music.
+To forward the support of composing game music, we have reintroduced editor for
+composition interactivity. The composer is now able to define environment variables that
+can be used to alter the way music is played. This provides a convenient interface for
+programmers who wish to control music playback without having to worry about the internal
+structure of the music.
 </p>
 
 <h3>Kunquat 0.6.2</h3>
 <p>2014-12-04</p>
 <p>
-In this release, the composition sheet returns with just enough support for creating small polyphonic tunes. Note and rest editing is supported through both mouse and keyboard. We have included a simple mixing graph editor together with limited support for instrument editing. You can also save and load your work using the new <em>save</em> and <em>open</em> buttons.
+In this release, the composition sheet returns with just enough support for creating
+small polyphonic tunes. Note and rest editing is supported through both mouse and
+keyboard. We have included a simple mixing graph editor together with limited support for
+instrument editing. You can also save and load your work using the new <em>save</em> and
+<em>open</em> buttons.
 </p>
 
 <p>
-On the architectural side, we did some internal code refactoring as well as some small adjustments to APIs. As a result, the Kunquat library API now reveals default values of the rendering engine initialization set, removing the need to copy values over to tracker code manually.
+On the architectural side, we did some internal code refactoring as well as some small
+adjustments to APIs. As a result, the Kunquat library API now reveals default values of
+the rendering engine initialization set, removing the need to copy values over to tracker
+code manually.
 </p>
 
 <p>
-We also did a complete renewal of the build process and started using the <em>fabricate</em> build tool. Therefore, you may wish to read the updated installation instructions even if you have built Kunquat before.
+We also did a complete renewal of the build process and started using the
+<em>fabricate</em> build tool. Therefore, you may wish to read the updated installation
+instructions even if you have built Kunquat before.
 </p>
 
 <h3>Kunquat 0.6.1</h3>
 <p>2014-03-18</p>
 <p>
-There has been silence for some time now when it comes to Kunquat releases. However, the development side has been active during this non-break. We have moved development to GitHub and upgraded our development process to match that.
+There has been silence for some time now when it comes to Kunquat releases. However, the
+development side has been active during this non-break. We have moved development to
+GitHub and upgraded our development process to match that.
 </p>
 
 <p>
-Since the previous release we have rewritten the tracker several times to experiment with different threading and programming models. While we have now found a model that seems to work, the tracker has lost lots of features that need rewriting to match the new model. We will be returning old features back one by one in future releases.
+Since the previous release we have rewritten the tracker several times to experiment with
+different threading and programming models. While we have now found a model that seems to
+work, the tracker has lost lots of features that need rewriting to match the new model.
+We will be returning old features back one by one in future releases.
 </p>
 
 <p>
-While many old features were lost in the architecture upgrade, the tracker also gained some new features. The new release introduces an on-screen keyboard that visualizes played notes with intense twinkle. Keyboard jamming is now a recognized use case and the latency and performance of the tracker have been adjusted accordingly. The tracker includes a log window that show what Kunquat events are fired in the background. In addition, some performance measurements are displayed in the about window.
+While many old features were lost in the architecture upgrade, the tracker also gained
+some new features. The new release introduces an on-screen keyboard that visualizes
+played notes with intense twinkle. Keyboard jamming is now a recognized use case and the
+latency and performance of the tracker have been adjusted accordingly. The tracker
+includes a log window that show what Kunquat events are fired in the background. In
+addition, some performance measurements are displayed in the about window.
 </p>
 
 <p>
-In addition to improvements in the tracker, we have also improved the API and architecture of the Kunquat C library. It is now possible to get an estimate of the duration of a Kunquat song without breaking the playback state. It is also possible to retrieve all fired events regardless of how many events are fired at once. We also added instrument controls that allow the user to rearrange their instruments more efficiently. Finally, we rewrote the sequencer code to give us more flexibility when implementing new features in the playback code.
+In addition to improvements in the tracker, we have also improved the API and
+architecture of the Kunquat C library. It is now possible to get an estimate of the
+duration of a Kunquat song without breaking the playback state. It is also possible to
+retrieve all fired events regardless of how many events are fired at once. We also added
+instrument controls that allow the user to rearrange their instruments more efficiently.
+Finally, we rewrote the sequencer code to give us more flexibility when implementing new
+features in the playback code.
 </p>
 
 </body>
