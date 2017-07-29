@@ -24,10 +24,22 @@ p.console
     font-family: monospace;
 }
 
-iframe.menu
+.menu a
 {
-    width: 100%;
-    border-width: 0;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    margin: 2px;
+    padding: 0.5em 2em;
+    background-color: #feb;
+}
+.menu a:hover
+{
+    background-color: #fe9;
+}
+.menu a:active
+{
+    background-color: #fe7;
 }
 
 div.screenshot
