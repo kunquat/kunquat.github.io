@@ -7,8 +7,14 @@ body
     background-size: 10em auto;
     background-position: right 1em bottom 0;
     background-attachment: fixed;
-    margin: 2em 10%;
+    margin: 0 10%;
+    padding: 0;
     font-family: sans-serif;
+}
+
+h1
+{
+    margin-top: 1em;
 }
 
 p

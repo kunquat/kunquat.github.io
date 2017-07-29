@@ -1,0 +1,43 @@
+
+
+@import url('kunquat.css');
+
+@media screen and (min-width: 60em) {
+
+    @supports (display: grid) {
+
+        body {
+            display: grid;
+            grid-template-columns: 3fr 2fr;
+            grid-template-areas:
+                "title title"
+                "menu menu"
+                "main side";
+            padding: 0;
+        }
+
+        .title {
+            grid-area: title;
+        }
+
+        .menu {
+            grid-area: menu;
+        }
+
+        .side {
+            grid-area: side;
+        }
+
+        .main {
+            grid-area: main;
+        }
+
+        div.screenshot img {
+            max-width: 40vw;
+        }
+
+    }
+
+}
+
+
