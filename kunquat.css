@@ -30,13 +30,13 @@ iframe.menu
     height: 6em;
     border-width: 0;
 }
-div.screen_shot
+div.screenshot
 {
     float: right;
     margin-left: 1em;
     margin-top: 1em;
 }
-div.screen_shot img
+div.screenshot img
 {
     width: 600px;
 }
@@ -50,11 +50,11 @@ div.screen_shot img
     height: 800em;
 }
 
-.screen_shot_thumbnail {
+.screenshot_thumbnail {
     height: 256px;
     display: inline-block;
 }
-.screen_shot_area {
+.screenshot_area {
     text-align: center;
 }
 
