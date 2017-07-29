@@ -12,9 +12,14 @@ body
     font-family: sans-serif;
 }
 
-h1
+.title
 {
     margin-top: 1em;
+    line-height: 0.8em;
+}
+.title .sub
+{
+    font-size: 70%;
 }
 
 p
@@ -96,6 +101,16 @@ h2 {
 
     .menu a {
         flex-grow: 1;
+    }
+
+}
+
+
+@media screen and (min-width: 60em) {
+
+    .title .sub
+    {
+        font-size: 100%;
     }
 
 }
