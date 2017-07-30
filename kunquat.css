@@ -1,63 +1,118 @@
+
+
 body
 {
-	background-image: url('kunquat.svg');
-	background-repeat: no-repeat;
-	background-size: 10em auto;
-	background-position: right 1em bottom 0;
-	background-attachment: fixed;
-	margin: 2em 15%;
-	font-family: sans-serif;
+    background-image: url('kunquat-transparent.svg');
+    background-repeat: no-repeat;
+    background-size: 10em auto;
+    background-position: right 1em bottom 0;
+    background-attachment: fixed;
+    margin: 0 10%;
+    padding: 0;
+    font-family: sans-serif;
 }
+
+.title
+{
+    margin-top: 1em;
+    line-height: 0.8em;
+}
+.title .sub
+{
+    font-size: 70%;
+}
+
 p
 {
-	max-width: 30em;
-	text-align: justify;
+    text-align: justify;
 }
 p.console
 {
-	max-width: 100%;
-	background-color: #ffc;
-	padding: 0.5em;
-	border: solid medium #ccc;
-	font-family: monospace;
+    max-width: 100%;
+    background-color: #ffc;
+    padding: 0.5em;
+    border: solid medium #ccc;
+    font-family: monospace;
 }
-td *
+
+.menu
 {
+    display: flex;
+    flex-direction: column;
 }
-iframe.menu
+.menu a
 {
-	width: 100%;
-	height: 6em;
-	border-width: 0;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+    margin: 1px;
+    padding: 0.5em 0.5em;
+    background-color: #feb;
 }
-div.screen_shot
+.menu a:hover
 {
-	float: right;
-	margin-left: 1em;
-	margin-top: 1em;
+    background-color: #fe9;
 }
-div.screen_shot img
+.menu a:active
 {
-	width: 600px;
+    background-color: #fe7;
 }
+
+div.screenshot
+{
+    margin-left: 1em;
+    margin-top: 1em;
+    text-align: center;
+}
+div.screenshot img
+{
+    max-width: 70vw;
+    max-height: 50vh;
+}
+
 .warning
 {
-	color: #f00;
+    color: #f00;
 }
 .doc
 {
-	width: 100%;
-	height: 800em;
+    width: 100%;
+    height: 800em;
 }
 
-.screen_shot_thumbnail {
-	height: 256px;
-	display: inline-block;
+.screenshot_thumbnail {
+    height: 256px;
+    display: inline-block;
 }
-.screen_shot_area {
-	text-align: center;
+.screenshot_area {
+    text-align: center;
 }
 
 h2 {
-	margin-top: 2em;
+    margin-top: 2em;
 }
+
+
+@media screen and (min-width: 35em) {
+
+    .menu {
+        flex-direction: row;
+    }
+
+    .menu a {
+        flex-grow: 1;
+    }
+
+}
+
+
+@media screen and (min-width: 60em) {
+
+    .title .sub
+    {
+        font-size: 100%;
+    }
+
+}
+
+

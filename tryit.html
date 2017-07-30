@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 <title>Kunquat Tracker</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" type="text/css" href="kunquat.css" />
 </head>
+
 <body>
-<iframe seamless class="menu" src="menu.html"></iframe>
+
+<h1 class="title">Kunquat <span class="sub">&ndash; a fresh take on old school trackers</span></h1>
+
+<nav class="menu">
+    <a href="./">about</a>
+    <a href="screenshots">screenshots</a>
+    <a href="usecases">use cases</a>
+    <a href="tryit">try it</a>
+    <a href="specification">specification</a>
+</nav>
 
 <h2>Installing</h2>
-<p>To use Kunquat, you need to get your hands on a relatively new (we use 14.04) Ubuntu system. You can then download and install Kunquat with the following command line magic.</p>
+<p>To use Kunquat, you need to get your hands on a relatively new (we use 14.04) Ubuntu
+system. You can then download and install Kunquat with the following command line
+magic.</p>
 <p class="console">
 sudo -k apt-get install build-essential scons libwavpack-dev libpulse-dev python-qt4 check libsndfile1-dev wget
 <br />cd /tmp
@@ -23,7 +37,8 @@ sudo -k apt-get install build-essential scons libwavpack-dev libpulse-dev python
 </p>
 
 <h2>Running</h2>
-<p>At this point you should have Kunquat installed. You can start the Kunquat tracker as follows.</p>
+<p>At this point you should have Kunquat installed. You can start the Kunquat tracker as
+follows.</p>
 <p class="console">
 export LD_LIBRARY_PATH=~/kunquat/lib
 <br />export PYTHONPATH=~/kunquat/lib/python2.7/site-packages
