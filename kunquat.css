@@ -81,8 +81,9 @@ div.screenshot img
 }
 
 .screenshot_thumbnail {
-    height: 256px;
-    display: inline-block;
+    max-width: 60vw;
+    max-height: 30vh;
+    /* box-shadow: 3px 3px 20px #000; */
 }
 .screenshot_area {
     text-align: center;
