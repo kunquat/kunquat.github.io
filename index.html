@@ -20,7 +20,7 @@
     <a href="specification">specification</a>
 </nav>
 
-<div class="side screenshot"><a href="/screenshots"><img src="./img/screenshots/kunquat-0.7.1.png" alt="" /></a></div>
+<div class="side screenshot"><a href="/screenshots"><img src="./img/screenshots/kunquat-0.8.1.png" alt="" /></a></div>
 
 <div class="main">
 
@@ -43,6 +43,56 @@ music is played.</p>
 <a href="https://github.com/kunquat/kunquat">GitHub</a>.</p>
 
 <h2>Releases</h2>
+
+<h3>Kunquat 0.8.1</h3>
+<p>2017-08-04</p>
+<p>
+This release of Kunquat introduces many new audio synthesis and signal processing
+capabilities, adds new ways to control instruments, improves usability, and brings a new
+polished look for the tracker. Although there are still missing key features and some
+details are subject to change, it is now possible to make full compositions of rich sound
+quality with the tracker.
+</p>
+
+<p>
+The tracker now supports traditional sample-based synthesis with sample selection based
+on pitch, force and random chance. Other new software synthesis processors include
+Karplus-Strong string synthesis as well as the PADsynth algorithm. Other new signal
+processors include a simple delay and a range mapper that can be used to convert signals
+between different value ranges.
+</p>
+
+<p>
+The tracker also features new ways of controlling instruments. The most notable is the
+hit interface that can be used to specify controls for drums and other non-melodic
+instruments. The instrument expression interface can be used to specify different ways to
+play a single instrument, which is especially useful with guitars and other similar
+instruments. The old note interface has also been extended with editors for user-defined
+scales and tunings.
+</p>
+
+<p>
+In addition to new features in the synthesiser and sequencer, the tracker features
+several usability improvements. The composition sheet now supports standard clipboard
+operations as well as undo and redo. Also, testing of instruments is now easier with
+extended controls and the ability to select a subgraph of an instrument to be played
+inside the instrument editor. Finally, the user interface provides better feedback and
+handles common error conditions more gracefully.
+</p>
+
+<p>
+Many things have also changed in the lower level. The Kunquat library now optimises many
+common signal processing patterns and supports multithreaded audio rendering,
+significantly reducing the computation time required for playback. Also, the Kunquat
+project has now migrated to Python 3 and the tracker interface uses the PyQt5 wrapper for
+accessing the Qt toolkit.
+</p>
+
+<p>
+Finally, we have begun the effort of adding macOS support. While it is not yet stable on
+the platform and there are many rough edges in appearance, it should be possible to use
+Kunquat Tracker for playing Kunquat modules.
+</p>
 
 <h3>Kunquat 0.7.1</h3>
 <p>2016-01-23</p>
