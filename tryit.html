@@ -20,17 +20,17 @@
 </nav>
 
 <h2>Installing</h2>
-<p>To use Kunquat, you need to get your hands on a relatively new (we use 14.04) Ubuntu
+<p>To use Kunquat, you need to get your hands on a relatively new (we use 16.04) Ubuntu
 system. You can then download and install Kunquat with the following command line
 magic.</p>
 <p class="console">
-sudo -k apt-get install build-essential scons libwavpack-dev libpulse-dev python-qt4 check libsndfile1-dev wget
+sudo -k apt-get install build-essential check libpulse-dev libsamplerate0-dev libsndfile1-dev libwavpack-dev python3 python3-pyqt5 python3-pyqt5.qtsvg
 <br />cd /tmp
-<br />wget http://kunquat.com/releases/<a href="http://kunquat.com/releases/kunquat-0.7.1.tar.gz">kunquat-0.7.1.tar.gz</a>
-<br />wget http://kunquat.com/releases/<a href="http://kunquat.com/releases/kunquat-0.7.1.tar.gz.md5">kunquat-0.7.1.tar.gz.md5</a>
-<br />md5sum -c kunquat-0.7.1.tar.gz.md5
-<br />tar xzf kunquat-0.7.1.tar.gz
-<br />cd kunquat-0.7.1
+<br />wget http://kunquat.com/releases/<a href="http://kunquat.com/releases/kunquat-0.8.1.tar.gz">kunquat-0.8.1.tar.gz</a>
+<br />wget http://kunquat.com/releases/<a href="http://kunquat.com/releases/kunquat-0.8.1.tar.gz.md5">kunquat-0.8.1.tar.gz.md5</a>
+<br />md5sum -c kunquat-0.8.1.tar.gz.md5
+<br />tar xzf kunquat-0.8.1.tar.gz
+<br />cd kunquat-0.8.1
 <br />./get_build_support.sh
 <br />./make.py
 <br />./make.py --prefix=~/kunquat install
@@ -41,7 +41,7 @@ sudo -k apt-get install build-essential scons libwavpack-dev libpulse-dev python
 follows.</p>
 <p class="console">
 export LD_LIBRARY_PATH=~/kunquat/lib
-<br />export PYTHONPATH=~/kunquat/lib/python2.7/site-packages
+<br />export PYTHONPATH=`python3 -c "import os, sys; print(os.path.expanduser('~/kunquat/lib/python{0}.{1}/site-packages'.format(*sys.version_info)))"`
 <br />~/kunquat/bin/kunquat-tracker
 </p>
 
