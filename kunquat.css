@@ -45,6 +45,7 @@ p.console
     padding: 0.5em;
     border: solid medium #ccc;
     font-family: monospace;
+    text-align: left;
 }
 
 .menu
