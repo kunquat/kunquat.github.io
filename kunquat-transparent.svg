@@ -457,7 +457,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -468,7 +468,7 @@
      style="display:inline">
     <g
        id="g4401"
-       style="opacity:0.3">
+       style="opacity:0.5">
       <path
          sodipodi:nodetypes="cssccc"
          id="path6713"
