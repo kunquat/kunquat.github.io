@@ -21,7 +21,7 @@
     <a href="specification">specification</a>
 </nav>
 
-<div class="side screenshot"><a href="/screenshots"><img src="./img/screenshots/kunquat-0.8.1.png" alt="" /></a></div>
+<div class="side screenshot"><a href="/screenshots"><img src="./img/screenshots/kunquat-0.9.1.png" alt="" /></a></div>
 
 <div class="main">
 
@@ -44,6 +44,36 @@ music is played.</p>
 <a href="https://github.com/kunquat/kunquat">GitHub</a>.</p>
 
 <h2>News</h2>
+
+<h3>Kunquat 0.9.1</h3>
+<p>2018-06-17</p>
+<p>
+This release of Kunquat contains some new signal processor features, bug fixes in the
+sequencer, some polish in the tracker interface, and a major preparation towards a stable
+file format.
+</p>
+<p>
+The PADsynth now supports a resonance envelope for enhanced control of the audio spectrum
+of the synth. New processors include an early iteration of a looping device as well as a
+bitcrusher implementation.
+</p>
+<p>
+The user interface of the tracker has improved in several small ways. The chord editing
+mode in the composition sheet is now optional, with a more traditional single-column
+editing mode as the default. Many number editing fields are now more convenient to use
+and allow more precision where needed. Finally, the sample editor now contains a tool for
+creating crossfaded loops.
+</p>
+<p>
+The Kunquat file formats have gone through a major change that helps maintaining
+backwards compatibility once the file formats have been stabilised. Unfortunately,
+this change itself breaks compatibility with earlier Kunquat releases, but hopefully
+this is the last time such a change is required.
+</p>
+<p>
+Finally, in order to ease adoption for third-party developers, this release introduces
+libkunquatfile, a C library that has a simple interface for loading Kunquat modules.
+</p>
 
 <h3>Kunquat 0.8.2</h3>
 <p>2017-12-25</p>
