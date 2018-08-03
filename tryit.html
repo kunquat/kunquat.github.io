@@ -23,18 +23,17 @@
 <div class="main">
 
 <h2>Installing</h2>
-<p>To use Kunquat, you need to get your hands on a relatively new (we use 16.04) Ubuntu
+<p>To use Kunquat, you need to get your hands on a relatively new (we use 18.04) Ubuntu
 system. You can then download and install Kunquat with the following command line
 magic.</p>
 <p class="console">
 sudo -k apt-get install build-essential check libpulse-dev libsamplerate0-dev libsndfile1-dev libwavpack-dev libzip-dev python3 python3-pyqt5 python3-pyqt5.qtsvg
 <br />cd /tmp
-<br />wget http://kunquat.com/releases/<a href="http://kunquat.com/releases/kunquat-0.9.1.tar.gz">kunquat-0.9.1.tar.gz</a>
-<br />wget http://kunquat.com/releases/<a href="http://kunquat.com/releases/kunquat-0.9.1.tar.gz.md5">kunquat-0.9.1.tar.gz.md5</a>
-<br />md5sum -c kunquat-0.9.1.tar.gz.md5
-<br />tar xzf kunquat-0.9.1.tar.gz
-<br />cd kunquat-0.9.1
-<br />./get_build_support.sh
+<br />wget http://kunquat.com/releases/<a href="http://kunquat.com/releases/kunquat-0.9.2.tar.gz">kunquat-0.9.2.tar.gz</a>
+<br />wget http://kunquat.com/releases/<a href="http://kunquat.com/releases/kunquat-0.9.2.tar.gz.md5">kunquat-0.9.2.tar.gz.md5</a>
+<br />md5sum -c kunquat-0.9.2.tar.gz.md5
+<br />tar xzf kunquat-0.9.2.tar.gz
+<br />cd kunquat-0.9.2
 <br />./make.py
 <br />./make.py --prefix=~/kunquat install
 </p>
