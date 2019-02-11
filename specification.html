@@ -25,7 +25,1000 @@
 <p><strong class="warning">The specification document is in an early draftin
 phase.</strong></p>
 
-<iframe class="doc" src="https://docs.google.com/document/d/1d3ixNPOr6Lm1h3sx0jAzfE-9a2QO2_7shZXWBvh2UPs/pub?embedded=true"></iframe>
+<h2>Kunquat, the Specification</h2>
+
+<h3>State Machine</h3>
+
+<p>
+Kunquat audio rendering is based around a state machine and three factors: initialisation
+set used to initialise the machine, audio rate used to control resolution of the
+execution, and a stream of commands that is used to request audio from and to interact
+with the state machine.
+</p>
+
+<p>
+The state machine is initialised with a set of key/value pairs that define available
+audio units (i.e. instrument and effects) and a connection graph that connects the
+instruments through various effects to a stereo output. The initialisation data may also
+contain an album of songs described as note data that can be used to control the audio
+units without human intervention.
+</p>
+
+<p>
+In addition to providing an initialisation set, the user needs to select an audio rate.
+The audio rate affects the resolution at which the audio rendering and event processing
+are done. A higher audio rate produces a more accurate estimation of the sound described
+by the parameters and make it possible to interact with the state machine more tightly.
+Specifying a lower audio rate reduces the amount of computation required.
+</p>
+
+<p>
+Once the state machine has been initialised, the operation proceeds by feeding commands
+to the state machine. The possible commands are:
+</p>
+
+<dl>
+<dt><code>render</code></dt>
+<dd>
+Produce a chunk of audio data together with information of any events that were processed
+during the rendering of the audio chunk.
+</dd>
+<dt><code>fire</code><dt>
+<dd>
+Feed external events into the state machine.
+</dd>
+<dt><code>get_events</code></dt>
+<dd>
+Retrieve a set of events that were processed during the last call of <code>render</code>
+or <code>fire</code>.
+</dd>
+</dl>
+
+<h4>Event</h4>
+
+<p>
+The events fired by the state machine contain one or zero parameters. Firing an event
+modifies the internal state of the state machine.
+</p>
+
+<h4>Trigger</h4>
+
+<p>
+Triggers are used for launching events in an automated fashion. A trigger consists of an
+event name and an expression. Processing a trigger includes evaluating the expression and
+launching an event with the value of the expression as a parameter.
+</p>
+
+<h4>Channel</h4>
+
+<p>
+Channels are numbers used for addressing audio unit controls. At any given time a channel
+has one or zero selected note outputs and one or zero active audio units. Some channel
+events affect the audio unit either directly or through the selected note output.
+</p>
+
+<h4>Environment</h4>
+
+<p>
+Environment is a variable space that can be used to parameterise parts of the automated
+playback.
+</p>
+
+<h4>Connection Graph</h4>
+
+<p>
+Connection graph connects instruments through effects into master output.
+</p>
+
+<h4>Randomness</h4>
+
+<p>
+Kunquat composition defines a global random seed that is used to initialise random number
+generators for various contexts at the start of playback.
+</p>
+
+<h3>Initialisation Set</h3>
+
+<pre>
+kqtc00/p_composition.json
+kqtc00/p_connections.json
+kqtc00/p_random_seed.json
+</pre>
+
+<h4>Album Description</h4>
+
+<pre>
+kqtc00/album/p_manifest.json
+kqtc00/album/p_tracks.json
+</pre>
+
+<h4>Audio Unit Description</h4>
+
+<pre>
+kqtc00/au_00/hit_00/p_hit_proc_filter.json
+kqtc00/au_00/hit_00/p_manifest.json
+kqtc00/au_00/p_connections.json
+kqtc00/au_00/p_expressions.json
+kqtc00/au_00/p_manifest.json
+kqtc00/au_00/p_streams.json
+</pre>
+
+<h4>Processor Description</h4>
+
+<pre>
+kqtc00/au_00/proc_00/c/mod_00/p_f_pitch.json
+kqtc00/au_00/proc_00/c/mod_00/p_f_volume.json
+kqtc00/au_00/proc_00/c/p_base.wav
+kqtc00/au_00/proc_00/c/p_hm_hit_map.json
+kqtc00/au_00/proc_00/c/p_nm_note_map.json
+kqtc00/au_00/proc_00/c/smp_000/p_sh_sample.json
+kqtc00/au_00/proc_00/c/smp_000/p_sample.wv
+kqtc00/au_00/proc_00/c/tone_00/p_f_pan.json
+kqtc00/au_00/proc_00/c/tone_00/p_f_pitch.json
+kqtc00/au_00/proc_00/c/tone_00/p_f_volume.json
+kqtc00/au_00/proc_00/p_manifest.json
+</pre>
+
+<h4>Pattern Description</h4>
+
+<pre>
+kqtc00/pat_000/col_00/p_triggers.json
+kqtc00/pat_000/instance_000/p_manifest.json
+kqtc00/pat_000/p_length.json
+kqtc00/pat_000/p_manifest.json
+</pre>
+
+<h4>Tuning Table Description</h4>
+
+<pre>
+kqtc00/tuning_00/p_tuning_table.json
+</pre>
+
+<h4>Song Description</h4>
+
+<pre>
+kqtc00/song_00/p_manifest.json
+kqtc00/song_00/p_order_list.json
+kqtc00/song_00/p_tempo.json
+</pre>
+
+<h3>Events</h3>
+
+<p>
+The events are categorised based on their scope and intended use.
+</p>
+
+<h4>About Slide Events</h4>
+
+<p>
+Some parameters in the playback state can be controlled with slides. Such parameters
+include note force and pitch, among others. Most slides are specified with a slide target
+event (denoted by forward slash ‘<strong>/</strong>’ in the event name) and a slide
+length event (denoted by forward slash and equals sign ‘<strong>/=</strong>’ in the event
+name). Oscillation parameter changes are always performed with slides (with slide length
+of 0 by default), even though their slide target events are not named with the forward
+slash.
+</p>
+
+<p>
+The slide target event starts the slide progress from the current parameter value to the
+target value. The slide is initialised with the length specified by the latest
+corresponding slide length event, or length 0 if no length has been specified. However,
+it is also possible to specify the slide length after the slide target in the same
+trigger row. If a slide length is updated while the slide is in progress, the remaining
+part of the slide will have the length specified by the new slide length event.
+</p>
+
+<p>
+All slides are linear in the scale in which they are documented. For example, when a
+force value is slid from 0 to -6 dBFS, the active force will be -3 dBFS exactly halfway
+through the slide. Note, however, that tempo adjustments affect the speeds of all slides,
+since the slide lengths are specified in timestamps.
+</p>
+
+<h4>Triggers for Name/Value Pair Control</h4>
+
+<p>
+Several events (stream, environment variable and device events) control values that are
+specified with a name setting event (e.g. ‘<strong>.s</strong>’ modifies a stream whose
+name is specified with ‘<strong>.sn</strong>’). For these event pairs, triggers support
+syntactic sugar of the form <strong>[.s:foo x]</strong> that is equivalent to triggers
+<strong>[.sn 'foo'] [.s x]</strong>.
+</p>
+
+<h4>Control Events</h4>
+
+<p>
+Control events are used for controlling generic playback-related behaviour. They are
+mostly intended to be used by editors and, to certain extent, interactive compositions.
+Most control events may cause infinite loops in compositions; therefore, control events
+specified in triggers are ignored by default.
+</p>
+
+<table class="events">
+
+<tr>
+<th>cpause</th>
+<td>
+<h>Stop reading pattern data</h>
+Stop the playback cursor. Active notes and effects will continue to be processed. New
+events can only be fired through the external interface. This event has no effect if the
+playback is already paused.
+</td>
+</tr>
+
+<tr>
+<th>cresume</th>
+<td>
+<h>Continue reading pattern data</h>
+Resume playback cursor movement. This event has no effect unless the playback is paused.
+</td>
+</tr>
+
+<tr>
+<th>cpattern</th>
+<td>
+<h>Read triggers from pattern instance <var>x</var> in a continuous loop</h>
+Jump to the beginning of pattern instance <var>x</var> and play that pattern instance in
+an infinite loop. This is mostly intended to be used by editors.
+</td>
+</tr>
+
+<tr>
+<th>c.gp</th>
+<td>
+<h>Set unconditional jump target pattern instance <var>x</var></h>
+Set target pattern instance <var>x</var> for event <strong>cg</strong>. This event does
+not cause jumping by itself.
+</td>
+</tr>
+
+<tr>
+<th>c.gr</th>
+<td>
+<h>Set unconditional jump target row <var>x</var></h>
+Set target row of timestamp <var>x</var> for event <strong>cg</strong>. This
+event does not cause jumping by itself.
+</td>
+</tr>
+
+<tr>
+<th>cg</th>
+<td>
+<h>Jump unconditionally</h>
+Jump to location specified by events <strong>c.gp</strong> and <strong>c.gr</strong>. If
+the target pattern instance has not been specified, the first pattern instance of the
+first song will be used. If the target row has not been specified, timestamp 0 will be
+used.
+</td>
+</tr>
+
+<tr>
+<th>cinfinite+</th>
+<td>
+<h>Enable infinite playback mode</h>
+By default, control events specified by triggers are ignored. This event will enable the
+processing of such triggers. Note that, being a control event itself, this event must be
+fired through the external interface to have an effect. Additionally, playback will jump
+to the beginning of the specified song if the end is reached. This event has no effect if
+the infinite playback mode is already enabled.
+</td>
+</tr>
+
+<tr>
+<th>cinfinite-</th>
+<td>
+<h>Disable infinite playback mode</h>
+Disable control events caused by triggers and stop playback when the end of the specified
+song is reached. Note that this effect will not disable pattern playback mode. This event
+has no effect if the infinite playback mode is already disabled.
+</td>
+</tr>
+
+<tr>
+<th>c.evn</th>
+<td>
+<h>Select environment variable <var>x</var></h>
+Select environment variable named <var>x</var> for storing a value.
+</td>
+</tr>
+
+<tr>
+<th>c.ev</th>
+<td>
+<h>Set value <var>x</var> of selected environment variable</h>
+Set value <var>x</var> of an environment variable. The variable name specified with the
+last <strong>c.evn</strong> event in the current channel is used. This event has no
+effect if the type of <var>x</var> is not compatible with the target environment
+variable.
+</td>
+</tr>
+
+</table>
+
+<h4>General Events</h4>
+
+<pre>
+#       Do nothing with string value x
+
+?       Event_general_cond
+?if     Event_general_if
+?else   Event_general_else
+?end    Event_general_end_if
+
+calln   Do nothing with string value x
+call    Do nothing with any value x
+</pre>
+
+<h4>Master Events</h4>
+
+<table class="events">
+
+<tr>
+<th>mpd</th>
+<td>
+<h>Pattern delay by timestamp <var>x</var></h>
+Suspend playback cursor for duration specified by timestamp <var>x</var>.
+</td>
+</tr>
+
+<tr>
+<th>m.jc</th>
+<td>
+<h>Set jump counter <var>x</var></h>
+Set jump counter used by the jump event <strong>mj</strong>. Valid range for <var>x</var>
+is [0, 32767].
+</td>
+</tr>
+
+<tr>
+<th>m.jp</th>
+<td>
+<h>Set jump target pattern instance <var>x</var></h>
+Set target pattern instance for the jump event <strong>mj</strong>.
+</td>
+</tr>
+
+<tr>
+<th>m.jr</th>
+<td>
+<h>Set jump target row <var>x</var></h>
+Set target row of timestamp x for the jump event <strong>mj</strong>.
+</td>
+</tr>
+
+<tr>
+<th>mj</th>
+<td>
+<h>Jump fixed number of times</h>
+Jump to location specified by events <strong>m.jp</strong> and <strong>m.jr</strong> a
+number of times specified by event <strong>m.jc</strong>.
+When the jump event is processed normally, the current playback cursor position (pattern
+instance, row timestamp, channel number and trigger row offset) is marked as a jump
+position with the given jump counter. If a playback cursor location is marked as a jump
+position, the possible corresponding mj trigger is ignored and the jump position is
+processed. If the jump counter of a jump position is positive, the counter is decremented
+by 1 and the jump is performed. If the counter is zero, the jump position information
+will be removed.
+</td>
+</tr>
+
+<tr>
+<th>m.t</th>
+<td>
+<h>Set tempo to <var>x</var></h>
+Set tempo to <var>x</var> beats per minute.
+</td>
+</tr>
+
+<tr>
+<th>m/t</th>
+<td>
+<h>Slide tempo to <var>x</var></h>
+Slide tempo to <var>x</var> beats per minute. Note that Kunquat implementations are
+expressly allowed to perform tempo slides in a lower resolution than implied by the audio
+rate, in order to simplify implementation of the sequencer.
+</td>
+</tr>
+
+<tr>
+<th>m/=t</th>
+<td>
+<h>Set tempo slide length to <var>x</var></h>
+Set tempo slide length specified by timestamp <var>x</var>. The length of the slide is
+interpreted in relation to the logical composition time. For instance, if a tempo slide
+of length 3 begins at row timestamp 2, the slide is always finished at timestamp 5,
+regardless of initial and final tempo values.
+</td>
+</tr>
+
+<tr>
+<th>m.v</th>
+<td>
+<h>Set global volume to <var>x</var> dBFS</h>
+</td>
+</tr>
+
+<tr>
+<th>m/v</th>
+<td>
+<h>Slide global volume to <var>x</var> dBFS</h>
+</td>
+</tr>
+
+<tr>
+<th>m/=v</th>
+<td>
+<h>Set global volume slide length to timestamp <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>m.r</th>
+<td>
+<h>Set active retuner to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>m.rfp</th>
+<td>
+<h>Set fixed pitch of the active retuner to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>m.rc</th>
+<td>
+<h>Set tuning centre of the active retuner to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>m.ro</th>
+<td>
+<h>Set active retuner pitch offset to <var>x</var> cents</h>
+</td>
+</tr>
+
+<tr>
+<th>mmr</th>
+<td>
+<h>Apply initial settings of retuner <var>x</var> to the active retuner</h>
+</td>
+</tr>
+
+<tr>
+<th>m&lt;r</th>
+<td>
+<h>Reset active retuner</h>
+</td>
+</tr>
+
+</table>
+
+<h4>Channel Events</h4>
+
+<table class="events">
+
+<tr>
+<th>.a</th>
+<td>
+<h>Set active audio unit control <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>n+</th>
+<td>
+<h>Note on with pitch <var>x</var></h>
+Start a new note with pitch of <var>x</var> cents. This event has no effect if the
+selected audio unit does not support voice control.
+</td>
+</tr>
+
+<tr>
+<th>h</th>
+<td>
+<h>Hit with index <var>x</var></h>
+Start a new note with hit index <var>x</var>. This event has no effect if the selected
+audio unit does not support voice control.
+</td>
+</tr>
+
+<tr>
+<th>n-</th>
+<td>
+<h>Note off</h>
+Release an active note or hit. This event has no effect if there is no foreground note in
+the channel. The released note or hit can no longer be controlled directly through
+events.
+</td>
+</tr>
+
+<tr>
+<th>.f</th>
+<td>
+<h>Set force to <var>x</var></h>
+Set force of the currently active note to <var>x</var> + <var>s</var> dBFS, where
+<var>s</var> is the global note force shift (-30 by default).
+</td>
+</tr>
+
+<tr>
+<th>/f</th>
+<td>
+<h>Slide force to <var>x</var></h>
+Slide force from current force to <var>x</var> + <var>s</var> dBFS, where <var>s</var> is
+the global note force shift (-30 by default). The slide is performed using slide length
+specified by <strong>/=f</strong>.
+</td>
+</tr>
+
+<tr>
+<th>/=f</th>
+<td>
+<h>Set force slide length to <var>x</var></h>
+Use timestamp <var>x</var> as the length of the force slide started by the
+<strong>/f</strong> event.
+</td>
+</tr>
+
+<tr>
+<th>ts</th>
+<td>
+<h>Set tremolo speed target to <var>x</var></h>
+Set tremolo speed target to <var>x</var> cycles per second. By default, the new speed
+takes full effect immediately; use the <strong>t/=s</strong> event for controlling the
+duration of the transition. Setting zero as the new speed target restores the original
+force level.
+</td>
+</tr>
+
+<tr>
+<th>td</th>
+<td>
+<h>Set tremolo depth target to <var>x</var></h>
+Set tremolo depth target to ±<var>x</var> dB. By default, the new depth takes full effect
+immediately; use the <strong>t/=d</strong> event for controlling the duration of the
+transition. Valid range for <var>x</var> is [0, 24].
+</td>
+</tr>
+
+<tr>
+<th>t/=s</th>
+<td>
+<h>Set tremolo speed slide length to <var>x</var></h>
+Use timestamp <var>x</var> as the length of the tremolo speed slide.
+</td>
+</tr>
+
+<tr>
+<th>t/=d</th>
+<td>
+<h>Set tremolo depth slide length to <var>x</var></h>
+Use timestamp <var>x</var> as the length of the tremolo depth slide.
+</td>
+</tr>
+
+<tr>
+<th>-&gt;f+</th>
+<td>
+<h>Turn on force carrying</h>
+Enable carrying of force effects (fixed force, slide and tremolo) from one note to the
+next. This needs to be applied before the first note that should inherit the force
+controls of the previous note.
+</td>
+</tr>
+
+<tr>
+<th>-&gt;f-</th>
+<td>
+<h>Turn off force carrying</h>
+Disable carrying of force effects between notes.
+</td>
+</tr>
+
+<tr>
+<th>/p</th>
+<td>
+<h>Slide pitch to <var>x</var></h>
+Slide pitch to <var>x</var> cents from current pitch, using slide length specified by the
+<strong>/=p</strong> event.
+</td>
+</tr>
+
+<tr>
+<th>/=p</th>
+<td>
+<h>Set pitch slide length to <var>x</var></h>
+Use timestamp <var>x</var> as the length of the pitch slide started by the
+<strong>/p</strong> event.
+</td>
+</tr>
+
+<tr>
+<th>vs</th>
+<td>
+<h>Set vibrato speed target to <var>x</var></h>
+Set vibrato speed target to <var>x</var> cycles per second.
+</td>
+</tr>
+
+<tr>
+<th>vd</th>
+<td>
+<h>Set vibrato depth target to <var>x</var></h>
+Set vibrato depth target to <var>x</var> * 5 cents. The depth is the maximum deviation,
+e.g. a depth of 240 has peaks at one octave above and below the centre pitch.
+</td>
+</tr>
+
+<tr>
+<th>v/=s</th>
+<td>
+<h>Set vibrato speed slide length to <var>x</var></h>
+Use timestamp <var>x</var> as the length of the vibrato speed slide.
+</td>
+</tr>
+
+<tr>
+<th>v/=d</th>
+<td>
+<h>Set vibrato depth slide length to <var>x</var></h>
+Use timestamp <var>x</var> as the length of the vibrato depth slide.
+</td>
+</tr>
+
+<tr>
+<th>-&gt;p+</th>
+<td>
+<h>Turn on pitch carrying</h>
+Enable carrying of pitch effects (pitch slide and vibrato) from one note to the next.
+This needs to be applied before the first note that should inherit the pitch controls of
+the previous note.
+</td>
+</tr>
+
+<tr>
+<th>-&gt;p-</th>
+<td>
+<h>Turn off pitch carrying</h>
+Disable carrying of pitch effects between notes.
+</td>
+</tr>
+
+<tr>
+<th>.arpn</th>
+<td>
+<h>Set an arpeggio note of pitch <var>x</var></h>
+Set a new entry of <var>x</var> cents in the arpeggio pitch list. The list initially
+contains the original pitch parameter of the current note, and each
+<strong>.arpn</strong> event adds a new note to the end of the list.
+</td>
+</tr>
+
+<tr>
+<th>.arpi</th>
+<td>
+<h>Set current arpeggio note index to <var>x</var></h>
+Set the destination list index used by the next <strong>.arpn</strong> event to
+<var>x</var>.
+</td>
+</tr>
+
+<tr>
+<th>.arps</th>
+<td>
+<h>Set arpeggio speed to <var>x</var></h>
+Set arpeggio speed to <var>x</var> notes per beat.
+</td>
+</tr>
+
+<tr>
+<th>&lt;arp</th>
+<td>
+<h>Clear arpeggio note settings</h>
+Restore the arpeggio pitch list to the initial value, i.e. a single-element list with the
+original pitch parameter.
+</td>
+</tr>
+
+<tr>
+<th>arp+</th>
+<td>
+<h>Turn arpeggio on</h>
+Turn arpeggio on using the current arpeggio pitch list. If the arpeggio is already in
+progress, this event has no effect.
+</td>
+</tr>
+
+<tr>
+<th>arp-</th>
+<td>
+<h>Turn arpeggio off</h>
+Turn arpeggio off. This event restores the pitch that would be active if the arpeggio was
+never activated in the first place. If the arpeggio is already off, this event has no
+effect.
+</td>
+</tr>
+
+<tr>
+<th>.sn</th>
+<td>
+<h>Select channel stream <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>.s</th>
+<td>
+<h>Set value of a channel stream to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>/s</th>
+<td>
+<h>Slide channel stream to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>/=s</th>
+<td>
+<h>Set slide length of channel stream to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>os</th>
+<td>
+<h>Set oscillation speed of channel stream to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>od</th>
+<td>
+<h>Set oscillation depth of channel stream to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>o/=s</th>
+<td>
+<h>Set oscillation speed slide length of channel stream to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>o/=d</th>
+<td>
+<h>Set oscillation depth slide length of channel stream to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>-&gt;s+</th>
+<td>
+<h>Turn on channel stream carrying</h>
+</td>
+</tr>
+
+<tr>
+<th>-&gt;s-</th>
+<td>
+<h>Turn off channel stream carrying</h>
+</td>
+</tr>
+
+<tr>
+<th>.xc</th>
+<td>
+<h>Set channel expression to <var>x</var></h>
+Set expression applied to all notes in the channel from the current timestamp onwards
+(including any notes previously started on the same row). Setting the expression to empty
+string disables channel expression, and setting no value applies the channel default
+expression setting.
+</td>
+</tr>
+
+<tr>
+<th>.x</th>
+<td>
+<h>Set note expression to <var>x</var></h>
+Set expression applied to a note just started. This only affects notes that haven’t
+rendered audio yet. Setting the expression to empty string disables note expression, and
+setting no value applies the instrument default expression setting.
+</td>
+</tr>
+
+<tr>
+<th>-&gt;x+</th>
+<td>
+<h>Turn on note expression carrying</h>
+</td>
+</tr>
+
+<tr>
+<th>-&gt;x-</th>
+<td>
+<h>Turn off note expression carrying</h>
+</td>
+</tr>
+
+<tr>
+<th>.dn</th>
+<td>
+<h>Set channel device event name to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>d</th>
+<td>
+<h>Fire channel device event with argument <var>x</var></h>
+</td>
+</tr>
+
+</table>
+
+<h4>Audio Unit Events</h4>
+
+<table class="events">
+
+<tr>
+<th>abp+</th>
+<td>
+<h>Turn on audio unit bypass</h>
+</td>
+</tr>
+
+<tr>
+<th>abp-</th>
+<td>
+<h>Turn off audio unit bypass</h>
+</td>
+</tr>
+
+<tr>
+<th>a.s</th>
+<td>
+<h>Set value of audio unit stream to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>a/s</th>
+<td>
+<h>Slide audio unit stream to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>a/=s</th>
+<td>
+<h>Set slide length of audio unit stream to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>aos</th>
+<td>
+<h>Set oscillation speed of audio unit stream to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>aod</th>
+<td>
+<h>Set oscillation depth of audio unit stream to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>ao/=s</th>
+<td>
+<h>Set oscillation speed slide length of audio unit stream to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>ao/=d</th>
+<td>
+<h>Set oscillation depth slide length of audio unit stream to <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>ad</th>
+<td>
+<h>Fire audio unit device event with argument <var>x</var></h>
+</td>
+</tr>
+
+<tr>
+<th>a.sus</th>
+<td>
+<h>Set instrument sustain value to <var>x</var></h>
+Set sustain to a normalised value between 0 and 1. 0 disables sustain completely, 1
+applies full sustain. Sustain slows down the processing of note release envelopes. If a
+force release envelope is not enabled, values ≥ 0.5 disable cutting of a released note.
+</td>
+</tr>
+
+</table>
+
+<h4>Query Events</h4>
+
+<p>
+Query events are used to request information from the rendering engine.
+</p>
+
+<pre>
+qlocation   Force generation of events Atrack, Asystem and Arow
+qvoices     Force generation of event Avoices
+qf          Force generation of event Af.
+</pre>
+
+<h4>Auto Events</h4>
+
+<p>
+Auto events fired with the fire command are ignored. The rendering engine creates auto
+events to report updates in the playback status.
+</p>
+
+<pre>
+Atrack      Do nothing with the current track number x.
+Asystem     Do nothing with the current system number x.
+Arow        Do nothing with the current pattern location timestamp x.
+Avoices     Do nothing with the current active voice count x.
+Af          Do nothing with the current actual force x of an active note.
+</pre>
+
+<h3>Appendix A: Module Format</h3>
+
+<p>
+The save feature in Kunquat Tracker stores initialization sets in zip files. Such saved
+files are called Kunquat modules. The keys of the initialization set are presented as
+file paths in the zip file and the values are stored as contents of the corresponding
+files. In addition to the values required for playback, the tracker extends the
+initialisation set with some metadata. See Appendix B for description of the metadata.
+</p>
+
+<h3>Appendix B: Metadata and Interface Data</h3>
+
+<pre>
+kqtc00/au_00/m_name.json    contains the name of the audio unit
+
+kqtc00/m_authors.json
+kqtc00/m_title.json
+
+kqtc00/i_grid_enabled.json
+kqtc00/i_grid_patterns.json
+kqtc00/pat_000/i_base_grid.json
+kqtc00/pat_000/col_00/i_overlay_grids.json
+</pre>
+
+<h3>Appendix C: Rendering Limitations</h3>
+
+<p>
+It is often desirable to specify limitations for rendering software. While implementing
+Kunquat, we have specified such limits for the amount of polyphony, the amount of active
+jump counters, the amount of nested ifs, the resolution of tempo slides, and the number
+of unconditional jumps performed without rendering audio between the jumps.
+</p>
+
+<h3>Appendix D: Editing Behaviour</h3>
+
+<p>
+Editors may wish to change the initialization set during rendering. This may cause the
+rendered sound to differ from the specified outcome during editing. In many cases this
+could be reasonable trade-off as working with an editor is largely about modifying the
+initialization set.
+</p>
+
 
 </div>
 
