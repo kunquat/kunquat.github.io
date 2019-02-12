@@ -121,8 +121,8 @@ h2 {
 
 table.events
 {
-    margin-left: 2em;
-    margin-right: 2em;
+    margin-left: 0;
+    margin-right: 0;
     border-color: #000;
     border-style: solid;
     border-width: 1px;
@@ -189,6 +189,12 @@ table.events td h
         padding-bottom: 1.5em;
     }
 
+    table.events
+    {
+        margin-left: 1em;
+        margin-right: 1em;
+    }
+
 }
 
 
@@ -197,6 +203,12 @@ table.events td h
     .title .sub
     {
         font-size: 100%;
+    }
+
+    table.events
+    {
+        margin-left: 2em;
+        margin-right: 2em;
     }
 
 }
