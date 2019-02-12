@@ -689,61 +689,6 @@ Disable carrying of pitch effects between notes.
 </tr>
 
 <tr>
-<th>.arpn</th>
-<td>
-<h>Set an arpeggio note of pitch <var>x</var></h>
-Set a new entry of <var>x</var> cents in the arpeggio pitch list. The list initially
-contains the original pitch parameter of the current note, and each
-<strong>.arpn</strong> event adds a new note to the end of the list.
-</td>
-</tr>
-
-<tr>
-<th>.arpi</th>
-<td>
-<h>Set current arpeggio note index to <var>x</var></h>
-Set the destination list index used by the next <strong>.arpn</strong> event to
-<var>x</var>.
-</td>
-</tr>
-
-<tr>
-<th>.arps</th>
-<td>
-<h>Set arpeggio speed to <var>x</var></h>
-Set arpeggio speed to <var>x</var> notes per beat.
-</td>
-</tr>
-
-<tr>
-<th>&lt;arp</th>
-<td>
-<h>Clear arpeggio note settings</h>
-Restore the arpeggio pitch list to the initial value, i.e. a single-element list with the
-original pitch parameter.
-</td>
-</tr>
-
-<tr>
-<th>arp+</th>
-<td>
-<h>Turn arpeggio on</h>
-Turn arpeggio on using the current arpeggio pitch list. If the arpeggio is already in
-progress, this event has no effect.
-</td>
-</tr>
-
-<tr>
-<th>arp-</th>
-<td>
-<h>Turn arpeggio off</h>
-Turn arpeggio off. This event restores the pitch that would be active if the arpeggio was
-never activated in the first place. If the arpeggio is already off, this event has no
-effect.
-</td>
-</tr>
-
-<tr>
 <th>.sn</th>
 <td>
 <h>Select channel stream <var>x</var></h>
