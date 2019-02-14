@@ -1,4 +1,4 @@
 kunquat.github.io
 =================
 
-kunquat.org web site
+Old kunquat.org web site, no longer updated here.
